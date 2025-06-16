@@ -1,6 +1,4 @@
-﻿
-
-namespace CareerAdvisor.Application.DTOs
+﻿namespace CareerAdvisor.Application.DTOs.UserProfile
 {
     public class UserProfileDto
     {

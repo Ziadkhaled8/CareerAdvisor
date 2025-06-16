@@ -1,4 +1,4 @@
-﻿using CareerAdvisor.Application.DTOs;
+﻿using CareerAdvisor.Application.DTOs.UserProfile;
 using MediatR;
 
 namespace CareerAdvisor.Application.UserProfiles.Queries

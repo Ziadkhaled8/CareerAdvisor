@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CareerAdvisor.Application.DTOs;
 using CareerAdvisor.Application.DTOs.Requests;
+using CareerAdvisor.Application.DTOs.UserProfile;
 using CareerAdvisor.Application.UserProfiles.Commands;
 using CareerAdvisor.Domain.Entities;
 

@@ -2,6 +2,7 @@ using CareerAdvisor.Application.Abstractions.Repositories;
 using CareerAdvisor.Application.Abstractions.Services;
 using CareerAdvisor.Application.Mappings;
 using CareerAdvisor.Domain.Entities;
+using CareerAdvisor.Infrastructure;
 using CareerAdvisor.Infrastructure.Data;
 using CareerAdvisor.Infrastructure.Repositories;
 using CareerAdvisor.Infrastructure.Services;
@@ -60,9 +61,8 @@ internal class Program
         builder.Services.AddAutoMapper(typeof(UserProfileMapping).Assembly);
         builder.Services.AddMediatR(cfg =>cfg.RegisterServicesFromAssembly(Assembly.Load("CareerAdvisor.Application")));
 
-        builder.Services.AddScoped<IAuthService, AuthService>();
+        builder.Services.AddInfrastructure();
 
-        builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
 
 
         builder.Services.AddOpenApi();
