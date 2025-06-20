@@ -1,4 +1,5 @@
-﻿using CareerAdvisor.Application.Abstractions.Repositories;
+﻿using CareerAdvisor.Application.Abstractions;
+using CareerAdvisor.Application.Abstractions.Repositories;
 using CareerAdvisor.Application.Abstractions.Services;
 using CareerAdvisor.Infrastructure.Repositories;
 using CareerAdvisor.Infrastructure.Services;
@@ -13,6 +14,10 @@ namespace CareerAdvisor.Infrastructure
         {
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddHttpClient<IAIClient, AIClient>(client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:8001");
+            });
 
             return services;
         }

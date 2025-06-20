@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CareerAdvisor.Application.DTOs;
 using CareerAdvisor.Application.DTOs.Requests;
 using CareerAdvisor.Application.DTOs.UserProfile;
 using CareerAdvisor.Application.UserProfiles.Commands;
@@ -68,6 +69,14 @@ namespace CareerAdvisor.API.Controllers
                 MinimumYearsOfExperience = minYears
             });
 
+            return Ok(result);
+        }
+
+        [HttpGet("admin/userprofiles")]
+        // [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<PagedResult<UserProfileDto>>> GetAllUserProfiles([FromQuery] GetUserProfilesQuery query)
+        {
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
 

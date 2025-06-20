@@ -48,5 +48,25 @@ namespace CareerAdvisor.Infrastructure.Repositories
 
             return await query.ToListAsync(cancellationToken);
         }
+        public async Task<(List<UserProfile> items, int totalCount)> GetUserProfilesAsync(string? search, int pageSize, int pageNumber, CancellationToken cancellationToken)
+        {
+            var query = _context.UserProfiles.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                var searchLowerCase = search.ToLower();
+                query = query.Where(u =>
+                    u.CurrentJobTitle!.ToLower().Contains(searchLowerCase) ||
+                    u.EducationLevel.ToLower().Contains(searchLowerCase) ||
+                    u.User.Email!.ToLower().Contains(searchLowerCase));
+            }
+
+            var totalCount = await query.CountAsync();
+            var items = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync(cancellationToken);
+            return new(items, totalCount);
+        }
     }
 }

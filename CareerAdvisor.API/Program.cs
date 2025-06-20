@@ -63,7 +63,15 @@ internal class Program
 
         builder.Services.AddInfrastructure();
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowLocalhost",
+                builder => builder.WithOrigins("http://localhost:4200")
+                                  .AllowAnyHeader()
+                                  .AllowAnyMethod());
+        });
 
+        
 
         builder.Services.AddOpenApi();
         builder.Services.AddControllers();
@@ -110,6 +118,8 @@ internal class Program
         app.UseAuthentication();
 
         app.UseAuthorization();
+
+        app.UseCors("AllowLocalhost");
 
         app.MapControllers();
 

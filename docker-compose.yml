@@ -25,5 +25,13 @@ services:
       - postgres
     restart: unless-stopped
 
+  ai-service:
+    build:
+      context: ./ai-service
+    container_name: career-advisor-ai
+    ports:
+      - "8001:8001"
+    restart: unless-stopped
+
 volumes:
   postgres_data:
